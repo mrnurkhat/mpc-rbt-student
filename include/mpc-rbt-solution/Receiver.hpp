@@ -12,7 +12,8 @@ public:
   explicit Node(const Utils::Config::Receiver & receiverConfig)
   : Socket::UDP(receiverConfig.localPort), config(receiverConfig)
   {
-    UNIMPLEMENTED(__PRETTY_FUNCTION__);
+    //UNIMPLEMENTED(__PRETTY_FUNCTION__);
+    callback = [this](const Socket::IPFrame &frame) { onDataReceived(frame); };
   }
 
   void run();

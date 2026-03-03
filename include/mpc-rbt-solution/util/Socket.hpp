@@ -24,7 +24,11 @@ struct IPFrame
 class UDP
 {
 public:
-  explicit UDP(const uint16_t localPort) : port(localPort) {}
+  explicit UDP(const uint16_t localPort) : port(localPort) {
+    create();
+    configure();
+    bind();
+  }
   virtual ~UDP();
 
   void create();
