@@ -10,5 +10,17 @@ def generate_launch_description():
 
     
     return LaunchDescription([
-
+	Node (
+		package='my_first_node',
+		executable='my_talker',
+		name='student_node_v1',
+		parameters=[
+			{'min_voltage': 36.0},
+			{'max_voltage': 42.0}
+		]
+	),
+	ExecuteProcess(
+		cmd=['ros2', 'bag', 'record', '/battery_voltage', '/battery_percentage'],
+          	output='screen'
+	)
     ])
