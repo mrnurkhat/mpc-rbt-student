@@ -11,16 +11,17 @@ def generate_launch_description():
     
     return LaunchDescription([
 	Node (
-		package='my_first_node',
-		executable='my_talker',
-		name='student_node_v1',
-		parameters=[
-			{'min_voltage': 36.0},
-			{'max_voltage': 42.0}
+		package='mpc_rbt_student',
+		executable='localization_node',
+		name='localization',
+		output='screen'
 		]
 	),
-	ExecuteProcess(
-		cmd=['ros2', 'bag', 'record', '/battery_voltage', '/battery_percentage'],
-          	output='screen'
-	)
-    ])
+	Node (
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', rviz_config_path],
+            output='screen'
+    )
+	])
