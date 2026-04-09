@@ -31,6 +31,13 @@ private:
 
     nav_msgs::msg::Odometry odometry_;
     rclcpp::Time last_time_;
+
+    float wheel_radius = 0.0;
+    float wheel_base = 0.0;
+
+    double x_ = 0.0;
+    double y_ = 0.0;
+    double theta_ = 0.0;
 };
 
 #endif // LOCALIZATION_HPP
