@@ -4,11 +4,14 @@
 #include <vector>
 #include <algorithm>
 #include <math.h>
+#include <limits>
 
 #include "rclcpp/rclcpp.hpp"
 #include "nav_msgs/msg/occupancy_grid.hpp"
 #include "nav_msgs/srv/get_map.hpp"
 #include "nav_msgs/srv/get_plan.hpp"
+#include "geometry_msgs/msg/pose_stamped.hpp"
+#include "nav_msgs/msg/path.hpp"
 
 // A-star cell structure
 struct Cell {
@@ -24,8 +27,13 @@ public:
     PlanningNode();
 
 private:
-    // Parameters
-    // TO DO
+    // Custom methods
+    void requestMap();
+    int worldToGridX(double world_x);
+    int worldToGridY(double world_y); 
+
+    double gridToWorldX(int grid_x);
+    double gridToWorldY(int grid_y);
 
     // Callbacks
     void mapCallback(rclcpp::Client<nav_msgs::srv::GetMap>::SharedFuture future);

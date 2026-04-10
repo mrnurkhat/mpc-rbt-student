@@ -8,10 +8,17 @@ def generate_launch_description():
     rviz_config_path = os.path.join(package_dir, 'rviz', 'config.rviz')
 
     return LaunchDescription([
-        Node(
+    	Node(
             package='mpc_rbt_student',
             executable='localization_node',
             name='localization',
+            output='screen',
+            parameters=[{'use_sim_time': True}]
+        ),
+        Node(
+            package='mpc_rbt_student',
+            executable='planning_node',
+            name='planning',
             output='screen',
             parameters=[{'use_sim_time': True}]
         ),
